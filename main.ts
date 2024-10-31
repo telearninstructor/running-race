@@ -10,7 +10,8 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`我的貼圖6`, function (spr
     if (HalfLap == true) {
         Lap += 1
         HalfLap = false
-    } else if (Lap == 4) {
+    }
+    if (Lap == 4) {
         game.splash("用了" + Time + "秒")
         info.setScore(100 - Time)
         game.over(true, effects.smiles)
