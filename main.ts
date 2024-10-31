@@ -97,11 +97,9 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         `)
 })
 let Time = 0
-let runner: Sprite = null
 let Lap = 0
 let HalfLap = false
-HalfLap = false
-Lap = 0
+let runner: Sprite = null
 tiles.setCurrentTilemap(tilemap`層級3`)
 game.splash("800公尺比賽")
 runner = sprites.create(img`
@@ -151,8 +149,10 @@ pause(1000)
 teacher.say("GOOOO", 1000)
 pause(1000)
 teacher.setFlag(SpriteFlag.Invisible, true)
-let BeginTime = game.runtime()
 controller.moveSprite(runner)
+HalfLap = false
+Lap = 0
+let BeginTime = game.runtime()
 game.onUpdateInterval(200, function () {
     Time = (game.runtime() - BeginTime) / 1000
     info.setScore(Time)
