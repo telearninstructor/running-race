@@ -141,7 +141,7 @@ let teacher = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
-tiles.placeOnTile(teacher, tiles.getTileLocation(6, 0))
+tiles.placeOnTile(teacher, tiles.getTileLocation(0, 0))
 teacher.say("3", 1000)
 pause(1000)
 teacher.say("2", 1000)
