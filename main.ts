@@ -3,7 +3,20 @@ namespace SpriteKind {
     export const Player2 = SpriteKind.create()
     export const HOST = SpriteKind.create()
 }
-controller.player1.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
+scene.onOverlapTile(SpriteKind.Player, assets.tile`我的貼圖7`, function (sprite, location) {
+    HalfLap = true
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`我的貼圖6`, function (sprite, location) {
+    if (HalfLap == true) {
+        Lap += 1
+        HalfLap = false
+    } else if (Lap == 4) {
+        game.splash("用了" + Time + "秒")
+        info.setScore(100 - Time)
+        game.over(true, effects.smiles)
+    }
+})
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     runner.setImage(img`
         . . . . . . . . . . . . 
         . . . f f f f f f . . . 
@@ -23,40 +36,7 @@ controller.player1.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pr
         . . f f f . . . f f . . 
         `)
 })
-scene.onOverlapTile(SpriteKind.Player, assets.tile`我的貼圖7`, function (sprite, location) {
-    HalfLap = true
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`我的貼圖6`, function (sprite, location) {
-    if (HalfLap == true) {
-        Lap += 1
-        HalfLap = false
-    } else if (Lap == 4) {
-        game.splash("用了" + Time + "秒")
-        info.setScore(100 - Time)
-        game.over(true, effects.smiles)
-    }
-})
-controller.player1.onButtonEvent(ControllerButton.Down, ControllerButtonEvent.Pressed, function () {
-    runner.setImage(img`
-        . . . . . . . . . . . . 
-        . . . f f f f f f . . . 
-        . f f f e e e e f f f . 
-        f f f e e e e e e f f f 
-        f f f f 4 e e e f f f f 
-        f f f 4 4 4 e e f f f f 
-        f f f 4 4 4 4 e e f f f 
-        f 4 e 4 4 4 4 4 4 e 4 f 
-        f 4 4 f f 4 4 f f 4 4 f 
-        f e 4 d d d d d d 4 e f 
-        e f e 4 d b b d d e f . 
-        e 4 d d 4 4 4 4 e f f f 
-        . e d d e 1 1 1 b f 4 e 
-        . . e e f 6 6 6 6 f . . 
-        . . . f f f f f f f . . 
-        . . . . . . . f f f . . 
-        `)
-})
-controller.player1.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     runner.setImage(img`
         . . . . . . . . . . . . 
         . . . . f f f f . . . . 
@@ -76,7 +56,7 @@ controller.player1.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pres
         . . . . . . . f f f . . 
         `)
 })
-controller.player1.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     runner.setImage(img`
         . . . . . . . . . . . . 
         . . . f f f f f f . . . 
@@ -94,6 +74,26 @@ controller.player1.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.P
         . f f f e e f 6 6 f f . 
         . f f f f f f f f f f . 
         . . f f . . . f f f . . 
+        `)
+})
+controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
+    runner.setImage(img`
+        . . . . . . . . . . . . 
+        . . . f f f f f f . . . 
+        . f f f e e e e f f f . 
+        f f f e e e e e e f f f 
+        f f f f 4 e e e f f f f 
+        f f f 4 4 4 e e f f f f 
+        f f f 4 4 4 4 e e f f f 
+        f 4 e 4 4 4 4 4 4 e 4 f 
+        f 4 4 f f 4 4 f f 4 4 f 
+        f e 4 d d d d d d 4 e f 
+        e f e 4 d b b d d e f . 
+        e 4 d d 4 4 4 4 e f f f 
+        . e d d e 1 1 1 b f 4 e 
+        . . e e f 6 6 6 6 f . . 
+        . . . f f f f f f f . . 
+        . . . . . . . f f f . . 
         `)
 })
 let Time = 0
